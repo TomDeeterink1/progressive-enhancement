@@ -6,32 +6,114 @@
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 		<link href="assets/styles.css" rel="stylesheet">
 		<style>
-			/* Schrijf hier gewoon je CSS voor dit component */
+			ul{
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				overflow: scroll;
+				scroll-snap-type: x mandatory;
+				list-style-type: none;
+				text-align: center;
+				& li{
+					font-family: Arial, Helvetica, sans-serif;
+					padding: 4em 0.8em;
+					font-size: 3em;
+					font-weight: 800;
+					min-width: 28em;
+					min-width: 80vw;
+					background-color: var(--purple);
+					scroll-snap-align: center;
 
-			/* Hint: welk layout model is handig om content naast elkaar te zetten? */
+					&:nth-child(2n){
+						background-color: var(--yellow);
+					}
+
+					&:nth-child(3n){
+						background-color:var(--green) ;
+					}
+				}
+			}
+			button{
+				padding: 12px 32px;
+				margin-top: -100px;
+				background-color: var(--blue);
+				border: none;
+				color: var(--green);
+				font-size: 1.2em;
+				border-radius: 8px;
+				transition: 0.15s ease-out;
+				&:hover{
+					outline: 3px solid var(--blue);
+					outline-offset: 4px;
+					transition: 0.15s ease-in;
+					cursor: pointer;
+				}
+				&:active{
+					outline: 3px solid var(--blue);
+					outline-offset: 4px;
+				}
+				
+			}
+
+			.next{
+				position: absolute;
+				left: 100px;
+				
+			}
+			.previous{
+				position: absolute;
+				right: 100px;
+			}
 		</style>
 		<script type="module">
-			/* Schrijf hier eventueel je client-side JavaScript */
+			const articles = document.querySelectorAll('.carouselitem');
+			const container = document.querySelector('.carousel');
+			const nextButton = document.querySelectorAll('.next');
+			const previousButton = document.querySelectorAll('.previous');
+
+			nextButton.forEach(button => button.addEventListener('click', () => scrollCarousel(-1)));
+			previousButton.forEach(button => button.addEventListener('click', () => scrollCarousel(1)));
+
+			function scrollCarousel(direction) {
+				const articleWidth = container.clientWidth;
+				const scrollAmount = direction * articleWidth;
+				const currentScrollPosition = container.scrollLeft;
+
+				let targetScrollPosition;
+				if (direction === 1) {
+					targetScrollPosition = currentScrollPosition + articleWidth;
+				} else {
+					targetScrollPosition = currentScrollPosition - articleWidth;
+				}
+
+				container.scrollTo({
+					left: targetScrollPosition,
+					behavior: 'smooth',
+				});
+			}
 		</script>
 	</head>
 	<body>
 		<h1>Carrousel</h1>
-
-		<!-- Content
-
-		“Websites leren bouwen, én praktijkervaring opdoen?”
-
-		“FDND is de enige HBO-opleiding voor Frontend Development in Nederland, in twee jaar stomen wij jou klaar voor het werkveld”
-
-		“Je werkt bij ons aan échte projecten voor échte opdrachtgevers”
-
-		“In het studiomodel werken studenten onder begeleiding van coaches en experts uit het vakgebied aan praktijkgerichte opdrachten”
-
-		“Bij FDND leer je websites bouwen en andere belangrijke skills die jij in de praktijk toe kan passen”
-
-		“Een Associate degree-opleiding is een tweejarige hbo-opleiding op niveau 5”
-
-		-->
+		<section> 
+			<h1>Carrousel</h1>
+			<ul class="carousel">
+				<li class="carouselitem">“Websites leren bouwen, én praktijkervaring opdoen?” </li>
+	
+				<li class="carouselitem">“FDND is de enige HBO-opleiding voor Frontend Development in Nederland, in twee jaar stomen wij jou klaar voor het werkveld” </li>
+	
+				<li class="carouselitem">“Je werkt bij ons aan échte projecten voor échte opdrachtgevers”</li>
+	
+				<li class="carouselitem">“In het studiomodel werken studenten onder begeleiding van coaches en experts uit het vakgebied aan praktijkgerichte opdrachten”</li>
+	
+				<li class="carouselitem">“Bij FDND leer je websites bouwen en andere belangrijke skills die jij in de praktijk toe kan passen”</li>
+	
+				<li class="carouselitem">“Een Associate degree-opleiding is een tweejarige hbo-opleiding op niveau 5”</li>
+			</ul>
+			<button class="next"> previeus</button>
+			<button class="previous"> next</button>
+		</section>
+		
 
 		<details open>
 			<summary>Demo video</summary>
