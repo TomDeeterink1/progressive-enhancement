@@ -6,16 +6,61 @@
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 		<link href="assets/styles.css" rel="stylesheet">
 		<style>
-			/* Schrijf hier gewoon je CSS voor dit component */
-
-			/* Hint: Dit component kun je volledig met HTML en CSS bouwen */
-
-			/* Hint: Hoe ver ga je qua styling? Vraag jezelf dit altijd af */
+		body{
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+		}	
+			input{
+				width: 100px;
+				height: 50px;
+				border-radius: 25px;
+				appearance: none;
+				background-color: grey;
+				
+				&:focus-visible{
+					outline: 3px solid var(--blue);
+				outline-offset: 4px;
+				}
+				&:checked{
+					background-color: var(--green);
+				}
+				&::before{
+					transition: 0.2s ease-out;
+					padding: 12.25px 7.41px;;
+					content: "Aan";
+					font-size: 1em;
+					position: absolute;
+					font-weight: 600;
+					background-color: white;
+					margin-left: 5px;
+					border-radius: 100%;
+					margin-top: 5px;
+					color: white;
+				}
+				&:checked::before{
+					padding: 12.25px 7.41px;;
+					content: "Aan";
+					font-size: 1em;
+					position: absolute;
+					font-weight: 600;
+					background-color: white;
+					margin-left: 54px;
+					border-radius: 100%;
+					transition: ease-in 0.25s;
+					color: var(--blue);
+					
+				}
+				&:hover{
+					cursor: pointer;
+				}
+			}
 		</style>
 	</head>
 	<body>
 		<h1>Switch control</h1>
-		
+		<input type="checkbox" id="html" name="fav_language" value="HTML">
+		<button></button>
 		<!-- Hint: Op het WebKit blog stond hierover vorige maand een goed artikel -->
 
 		<details open>
